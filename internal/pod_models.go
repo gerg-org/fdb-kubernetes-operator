@@ -55,8 +55,10 @@ func generateServicePorts(processesPerPod int) []corev1.ServicePort {
 	ports := make([]corev1.ServicePort, 0, processesPerPod*2)
 
 	for i := 1; i <= processesPerPod; i++ {
-		tlsPortName := "tls"
-		nonTlSPortName := "non-tls"
+		// Prefix with tcp- so Istio treats these as raw TCP. The short names
+		// "tls" and "non-tls" are sniffed, and Istio 1.28 drops the FDB handshake.
+		tlsPortName := "tcp-tls"
+		nonTlSPortName := "tcp-non-tls"
 
 		// We keep the current behaviour and only add the process number to ports for
 		// processes > 1.

@@ -3260,9 +3260,9 @@ var _ = Describe("pod_models", func() {
 				Expect(service.Spec.Type).To(Equal(corev1.ServiceTypeClusterIP))
 
 				Expect(len(service.Spec.Ports)).To(Equal(2))
-				Expect(service.Spec.Ports[0].Name).To(Equal("tls"))
+				Expect(service.Spec.Ports[0].Name).To(Equal("tcp-tls"))
 				Expect(service.Spec.Ports[0].Port).To(Equal(int32(4500)))
-				Expect(service.Spec.Ports[1].Name).To(Equal("non-tls"))
+				Expect(service.Spec.Ports[1].Name).To(Equal("tcp-non-tls"))
 				Expect(service.Spec.Ports[1].Port).To(Equal(int32(4501)))
 
 				Expect(service.Spec.Selector).To(Equal(map[string]string{
@@ -3288,9 +3288,9 @@ var _ = Describe("pod_models", func() {
 				Expect(service.Spec.Type).To(Equal(corev1.ServiceTypeClusterIP))
 
 				Expect(len(service.Spec.Ports)).To(Equal(2))
-				Expect(service.Spec.Ports[0].Name).To(Equal("tls"))
+				Expect(service.Spec.Ports[0].Name).To(Equal("tcp-tls"))
 				Expect(service.Spec.Ports[0].Port).To(Equal(int32(4500)))
-				Expect(service.Spec.Ports[1].Name).To(Equal("non-tls"))
+				Expect(service.Spec.Ports[1].Name).To(Equal("tcp-non-tls"))
 				Expect(service.Spec.Ports[1].Port).To(Equal(int32(4501)))
 
 				Expect(service.Spec.Selector).To(Equal(map[string]string{
@@ -3342,9 +3342,9 @@ var _ = Describe("pod_models", func() {
 				Expect(service.Spec.Type).To(Equal(corev1.ServiceTypeClusterIP))
 
 				Expect(len(service.Spec.Ports)).To(Equal(2))
-				Expect(service.Spec.Ports[0].Name).To(Equal("tls"))
+				Expect(service.Spec.Ports[0].Name).To(Equal("tcp-tls"))
 				Expect(service.Spec.Ports[0].Port).To(Equal(int32(4500)))
-				Expect(service.Spec.Ports[1].Name).To(Equal("non-tls"))
+				Expect(service.Spec.Ports[1].Name).To(Equal("tcp-non-tls"))
 				Expect(service.Spec.Ports[1].Port).To(Equal(int32(4501)))
 
 				Expect(service.Spec.Selector).To(Equal(map[string]string{

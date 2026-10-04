@@ -153,6 +153,16 @@ func updateService(
 
 	currentService.Spec.Selector = newService.Spec.Selector
 
+	// Rename ports in place. Replacing the port list would drop API-defaulted
+	// fields, and deleting the Service would allocate a new ClusterIP.
+	for i := range currentService.Spec.Ports {
+		for _, desired := range newService.Spec.Ports {
+			if currentService.Spec.Ports[i].Port == desired.Port && currentService.Spec.Ports[i].Name != desired.Name {
+				currentService.Spec.Ports[i].Name = desired.Name
+			}
+		}
+	}
+
 	needsUpdate := !equality.Semantic.DeepEqual(currentService.Spec, *originalSpec)
 	metadata := currentService.ObjectMeta
 	if internal.MergeLabels(&metadata, newService.ObjectMeta) {
