@@ -119,7 +119,7 @@ func updateSidecarImage(
 	}
 
 	for containerIndex, container := range pod.Spec.Containers {
-		if container.Name == fdbv1beta2.SidecarContainerName && container.Image != image {
+		if container.Name == fdbv1beta2.SidecarContainerName && !internal.SameImageRef(container.Image, image) {
 			logger.Info(
 				"Upgrading sidecar",
 				"processGroupID",

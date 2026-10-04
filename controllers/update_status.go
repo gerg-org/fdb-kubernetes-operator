@@ -817,7 +817,7 @@ func validateProcessGroup(
 
 	sidecarImageCorrect := true
 	for _, container := range pod.Spec.Containers {
-		if container.Name == fdbv1beta2.SidecarContainerName && container.Image != sidecarImage {
+		if container.Name == fdbv1beta2.SidecarContainerName && !internal.SameImageRef(container.Image, sidecarImage) {
 			logger.Info(
 				"IncorrectSidecarImage",
 				"currentImage",
